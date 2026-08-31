@@ -69,10 +69,15 @@ plugins:
     order: 40
   - source: "@quartz-community/table-of-contents"
     enabled: true
+    options:
+      maxDepth: 3
+      minEntries: 2
     order: 50
     layout:
-      position: right
-      priority: 30
+      position: left
+      priority: 60
+      display: desktop-only
+      condition: has-toc
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
@@ -149,14 +154,17 @@ plugins:
     enabled: true
   - source: "@quartz-community/explorer"
     enabled: true
+    options:
+      title: 知识导航
     layout:
       position: left
       priority: 50
   - source: "@quartz-community/graph"
     enabled: true
     layout:
-      position: right
-      priority: 10
+      position: left
+      priority: 70
+      display: desktop-only
   - source: "@quartz-community/search"
     enabled: true
     layout:
@@ -168,7 +176,7 @@ plugins:
   - source: "@quartz-community/backlinks"
     enabled: true
     layout:
-      position: right
+      position: afterBody
       priority: 50
   - source: "@quartz-community/article-title"
     enabled: true

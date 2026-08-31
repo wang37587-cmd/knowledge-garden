@@ -11,9 +11,13 @@ body {
 .center > .page-header,
 .center > article,
 .center > .page-footer {
-  max-width: 760px;
+  max-width: 920px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.page[data-frame="default"] > #quartz-body > .sidebar.right {
+  display: none;
 }
 
 .page > #quartz-body .page-header {
@@ -384,6 +388,105 @@ article blockquote {
   letter-spacing: 0.08em;
 }
 
+.toc .toc-header {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.15rem 0.35rem 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--secondary) 18%, var(--lightgray));
+}
+
+.toc .toc-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0;
+}
+
+.toc .toc-header h3::before {
+  width: 0.22rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: var(--secondary);
+  content: "";
+}
+
+.toc .toc-header h3::after {
+  font-size: 0.95rem;
+  content: "本文目录";
+}
+
+.toc .toc-header .fold {
+  margin-left: auto;
+}
+
+.toc ul.toc-content.overflow {
+  box-sizing: border-box;
+  margin: 0.65rem 0 0;
+  padding: 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--secondary) 16%, var(--lightgray));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--secondary) 5%, var(--light));
+  box-shadow: 0 10px 26px rgba(36, 33, 29, 0.04);
+}
+
+.toc ul.toc-content.overflow > li {
+  margin: 0.1rem 0;
+}
+
+.toc ul.toc-content.overflow > li > a {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.38rem 0.5rem;
+  border-radius: 9px;
+  opacity: 0.68;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.toc ul.toc-content.overflow > li.depth-0 > a {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.toc ul.toc-content.overflow > li.depth-1,
+.toc ul.toc-content.overflow > li.depth-2 {
+  padding-left: 0.45rem;
+  border-left: 1px solid color-mix(in srgb, var(--secondary) 24%, var(--lightgray));
+}
+
+.toc ul.toc-content.overflow > li.depth-1 {
+  margin-left: 0.5rem;
+}
+
+.toc ul.toc-content.overflow > li.depth-2 {
+  margin-left: 1rem;
+}
+
+.toc ul.toc-content.overflow > li.depth-1 > a,
+.toc ul.toc-content.overflow > li.depth-2 > a {
+  font-size: 0.84rem;
+}
+
+.toc ul.toc-content.overflow > li > a:hover {
+  background: color-mix(in srgb, var(--secondary) 9%, var(--light));
+  color: var(--secondary);
+  opacity: 1;
+}
+
+.toc ul.toc-content.overflow > li > a.in-view {
+  background: color-mix(in srgb, var(--tertiary) 13%, var(--light));
+  color: var(--tertiary);
+  opacity: 1;
+  box-shadow: inset 3px 0 0 var(--tertiary);
+}
+
 .graph .graph-outer {
   overflow: hidden;
   border: 1px solid var(--lightgray);
@@ -393,15 +496,46 @@ article blockquote {
 }
 
 @media all and ($desktop) {
+  .page[data-frame="default"] > #quartz-body {
+    grid-template-areas:
+      "grid-sidebar-left grid-header"
+      "grid-sidebar-left grid-center"
+      "grid-sidebar-left grid-footer";
+    grid-template-columns: #{$sidePanelWidth} minmax(0, 1fr);
+  }
+
   .page > #quartz-body .sidebar.left {
     padding-right: 1.5rem;
     border-right: 1px solid var(--lightgray);
   }
+}
 
-  .page > #quartz-body .sidebar.right {
-    padding-left: 1.5rem;
-    border-left: 1px solid var(--lightgray);
+@media all and (min-width: 801px) {
+  .page > #quartz-body .sidebar.left {
+    overflow-y: auto;
   }
+
+  .page > #quartz-body .sidebar.left .explorer {
+    min-height: 2.4rem;
+    flex-shrink: 0;
+  }
+
+  .page > #quartz-body .sidebar.left .explorer.collapsed {
+    flex: 0 0 2.4rem;
+  }
+
+  .page > #quartz-body .sidebar.left .toc {
+    min-height: 2.4rem;
+    flex-shrink: 0;
+  }
+
+  .page > #quartz-body .sidebar.left .toc:has(.toc-header.collapsed) {
+    flex: 0 0 2.4rem;
+  }
+}
+
+.page-footer .backlinks > ul.overflow {
+  max-height: none;
 }
 
 footer {

@@ -180,8 +180,7 @@ function validateStructure(document) {
       let next = index + 1
       while (next < lines.length && !lines[next].trim()) next += 1
       const nextHeading = next < lines.length ? /^(#{1,6})\s+\S/.exec(lines[next]) : null
-      const nestedSection =
-        nextHeading !== null && nextHeading[1].length > currentHeading[1].length
+      const nestedSection = nextHeading !== null && nextHeading[1].length > currentHeading[1].length
       const heading = /^#\s+(.+)$/.exec(lines[index])
       const documentTitle =
         heading &&

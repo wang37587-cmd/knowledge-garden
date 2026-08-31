@@ -8,15 +8,12 @@ cssclasses:
 
 ## 探索主题
 
-- [AI 与 Agent](<AI/AI Agent 基础概念.md>) 理解智能体的基础概念、组成方式与常见应用。
-- [Prompt 设计](<AI/Prompt 设计原则.md>) 整理清晰、稳定且容易复用的提示词设计原则。
-- [软件开发](<开发/Markdown 知识组织.md>) 记录开发实践，以及如何用 Markdown 组织技术知识。
-- [工具与环境](<工具与环境/GitHub Pages 部署.md>) 沉淀部署流程、环境配置和常用工具的使用方法。
+- [AI 开发知识地图](<AI 开发/index.md>) 从核心概念出发，逐步学习 Agent、工具、规则和工程实践。
 
 ## 最近整理
 
-- [GitHub Pages 部署](<工具与环境/GitHub Pages 部署.md>) 从仓库配置到自动发布的完整过程。
-- [静态网站常见问题](问题排查/静态网站常见问题.md) 汇总构建、路径和资源加载问题的排查思路。
-- [Prompt 设计原则](<AI/Prompt 设计原则.md>) 让提示词从“偶尔有效”变得更稳定、更容易维护。
+- [AI 开发知识地图](<AI 开发/index.md>) 建立从基础概念到具体工程实践的学习路径。
+- [AI 开发核心概念](<AI 开发/基础概念/AI 开发核心概念.md>) 理解 LLM、Agent、Tool、Harness、Rule、Skill、Plugin 与 MCP 的关系。
+- [Codex 规则如何生效](<AI 开发/Agent 工程/Codex/Codex 规则如何生效.md>) 理解 AGENTS.md 的加载、覆盖和容量边界。
 
 > 知识不是等待填满的容器，而是一张在阅读、实践和连接中不断生长的网络。

@@ -1,46 +1,110 @@
 ---
 title: AI 开发知识地图
-description: 从 LLM 与 Agent 基础概念出发，逐步学习工具、规则、工作流和 Codex 工程实践。
+description: 用概念总览定位模型、知识、行动、记忆、可靠性与工程落地，再进入对应专题。
 tags: [AI, Agent, 学习路径]
+cssclasses: [knowledge-map]
 aliases:
+  - AI 开发知识地图
   - AI 开发学习路径
   - AI 知识地图
 ---
 
-> [!abstract] 30 秒掌握
->
-> - 模型能力决定系统能理解和生成什么，Agent 执行决定系统如何围绕目标持续行动。
-> - Tool 与 MCP 负责接入可调用能力和外部上下文，Skill 与 Harness 负责组织执行过程。
-> - Rule、权限、测试和校验器构成工程控制，约束 Agent 在什么边界内行动以及如何证明结果。
-> - 建议先读核心概念，再进入 Codex 的规则加载、跨项目复用和扩展机制专题。
+先看全景，再按下方六个主题顺序阅读。第一遍建立概念之间的联系，遇到疑问再进入对应的深入文章。
 
-## 用四层理解 AI 开发
+<div class="concept-overview" aria-label="AI 应用开发概念总览">
+  <div class="concept-band">
+    <strong>核心能力</strong>
+    <span>理解要求 · 获取知识 · 执行动作</span>
+  </div>
+  <div class="concept-grid">
+    <section class="concept-card concept-model" aria-labelledby="concept-model">
+      <div class="concept-card-heading"><span class="concept-number">01</span><h3 id="concept-model">模型与输入输出</h3></div>
+      <p>理解要求，生成结果</p>
+      <ul class="concept-terms">
+        <li>LLM</li><li>Prompt</li><li>Context</li><li>Token</li><li>结构化输出</li>
+      </ul>
+    </section>
+    <section class="concept-card concept-knowledge" aria-labelledby="concept-knowledge">
+      <div class="concept-card-heading"><span class="concept-number">02</span><h3 id="concept-knowledge">知识接入</h3></div>
+      <p>找到并使用外部资料</p>
+      <ul class="concept-terms">
+        <li>知识库</li><li>检索</li><li>RAG</li><li>Embedding</li><li>向量数据库</li>
+      </ul>
+    </section>
+    <section class="concept-card concept-action" aria-labelledby="concept-action">
+      <div class="concept-card-heading"><span class="concept-number">03</span><h3 id="concept-action">行动与编排</h3></div>
+      <p>执行操作，组织任务步骤</p>
+      <ul class="concept-terms">
+        <li>Tool</li><li>Tool Calling</li><li>MCP</li><li>Workflow</li><li>Agent</li><li>Harness</li>
+      </ul>
+    </section>
+  </div>
+  <div class="concept-band">
+    <strong>工程支撑</strong>
+    <span>贯穿整个应用，按需求组合</span>
+  </div>
+  <div class="concept-grid">
+    <section class="concept-card concept-memory" aria-labelledby="concept-memory">
+      <div class="concept-card-heading"><span class="concept-number">04</span><h3 id="concept-memory">状态与记忆</h3></div>
+      <p>记录进展，保留有用信息</p>
+      <ul class="concept-terms">
+        <li>任务状态</li><li>会话历史</li><li>短期记忆</li><li>长期记忆</li><li>上下文压缩</li>
+      </ul>
+    </section>
+    <section class="concept-card concept-quality" aria-labelledby="concept-quality">
+      <div class="concept-card-heading"><span class="concept-number">05</span><h3 id="concept-quality">可靠性</h3></div>
+      <p>检查效果，控制风险与开销</p>
+      <ul class="concept-terms">
+        <li>授权与权限</li><li>验证</li><li>评测</li><li>Trace · 执行追踪</li><li>成本</li><li>延迟</li>
+      </ul>
+    </section>
+    <section class="concept-card concept-engineering" aria-labelledby="concept-engineering">
+      <div class="concept-card-heading"><span class="concept-number">06</span><h3 id="concept-engineering">工程与落地</h3></div>
+      <p>维护规范，组合与交付应用</p>
+      <ul class="concept-terms">
+        <li>Rule</li><li>Skill</li><li>Plugin</li><li>API / 界面</li><li>部署</li><li>单 / 多 Agent</li>
+      </ul>
+    </section>
+  </div>
+</div>
 
-| 层次       | 核心问题                                       | 代表概念                                |
-| ---------- | ---------------------------------------------- | --------------------------------------- |
-| 模型能力   | 系统能够理解、生成和推理什么                   | LLM                                     |
-| Agent 执行 | 系统如何围绕目标观察、决策、行动并根据结果继续 | Agent、Harness                          |
-| 能力连接   | 系统可以调用哪些操作、数据和外部服务           | Tool、MCP                               |
-| 工程控制   | 系统必须遵循什么边界，如何复用流程并验证结果   | Rule、Skill、Plugin、权限、测试、校验器 |
+图中分组表示学习主题，不是执行顺序，也不代表每个应用都需要全部组件。概念之间会交叉：检索结果进入 Context，Agent 调用 Tool 推进行动，状态与记忆保留后续步骤需要的信息，可靠性贯穿整个过程。
 
-这四层不是互相替代的产品选项，而是观察同一个 AI 系统的不同角度。模型提供基础能力；Agent 与 Harness 组织执行；Tool 与 MCP 接入现实世界；Rule、Skill 和其他工程机制让行为更稳定、可复用、可审查。
+各主题已有入门正文；Agent 运行机制、工具接口和 Codex 是选读内容，不必在第一遍全部读完。这里聚焦 AI 应用开发，不展开模型训练算法与底层算力工程。
 
-## 推荐阅读顺序
+## 1. 模型与输入输出
 
-1. 阅读 [AI 开发核心概念](<基础概念/AI 开发核心概念.md>)，建立 LLM、Agent、Tool、Harness、Rule、Skill、Plugin 与 MCP 的整体关系。
-2. 阅读 [Codex 规则如何生效](<Agent 工程/Codex/Codex 规则如何生效.md>)，理解 Codex 如何发现和合并 `AGENTS.md`。
-3. 阅读 [多个项目如何复用 Codex 规则](<Agent 工程/Codex/多个项目如何复用 Codex 规则.md>)，把通用原则、项目事实和任务工作流分层维护。
-4. 阅读 [Codex Skill、Plugin、MCP 与 Superpowers](<Agent 工程/Codex/Codex Skill、Plugin、MCP 与 Superpowers.md>)，理解工作流、连接能力、分发容器与本机开发流程 Plugin 如何组合。
+- [[AI 开发/基础概念/LLM、Prompt 与 Context|LLM、Prompt 与 Context]]
 
-## 主题速览
+## 2. 知识接入
 
-| 主题                                                                                                     | 主问题                                  | 适合何时阅读                    |
-| -------------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------- |
-| [AI 开发核心概念](<基础概念/AI 开发核心概念.md>)                                                         | AI 开发系统由哪些部分组成，它们如何协作 | 第一次建立 Agent 工程心智模型时 |
-| [Codex 规则如何生效](<Agent 工程/Codex/Codex 规则如何生效.md>)                                           | `AGENTS.md` 如何加载、合并和覆盖        | 需要定义 Codex 长期项目规则时   |
-| [多个项目如何复用 Codex 规则](<Agent 工程/Codex/多个项目如何复用 Codex 规则.md>)                         | 多个仓库之间如何减少重复规则            | 维护个人、团队或多仓库规范时    |
-| [Codex Skill、Plugin、MCP 与 Superpowers](<Agent 工程/Codex/Codex Skill、Plugin、MCP 与 Superpowers.md>) | 工作流、外部工具和能力分发如何分工      | 需要扩展 Codex 或处理流程冲突时 |
+- [[AI 开发/知识接入/模型知识、知识库与 RAG|模型知识、知识库与 RAG]]
 
-## 内容扩展边界
+## 3. 行动与编排
 
-这张知识地图按可复用主题生长，不按对话、日期或工具清单机械扩张。只有当 LLM、RAG、记忆、评估、安全或其他方向已经积累了足够多、能够独立理解并经常单独引用的知识时，才为其创建独立文章或新的下级主题；内容不足时继续整合在现有主题中。
+- [[AI 开发/基础概念/AI 开发核心概念|行动与编排的核心概念]]
+- [[AI 开发/Agent 工程/Workflow、单 Agent 与多 Agent|Workflow、单 Agent 与多 Agent]]
+
+### 3.1 深入：Agent 与工具
+
+- [[AI 开发/Agent 工程/Agent 如何运行与停止|Agent 如何运行与停止]]
+- [[AI 开发/Agent 工程/Tool 的接口与结果设计|Tool 的接口与结果设计]]
+- [[AI 开发/Agent 工程/子 Agent 的原理与使用|子 Agent 的原理与使用]]
+
+## 4. 状态与记忆
+
+- [[AI 开发/状态与记忆/状态、记忆与上下文管理|状态、记忆与上下文管理]]
+
+## 5. 可靠性
+
+- [[AI 开发/可靠性/验证、评测与执行追踪|验证、评测与执行追踪]]
+
+## 6. 工程与落地
+
+- [[AI 开发/工程与落地/从模型调用到可用的 AI 应用|从模型调用到可用的 AI 应用]]
+
+### 6.1 选读：Codex 专题
+
+- [[AI 开发/Agent 工程/Codex/Codex 规则如何生效|Codex 规则如何生效]]
+- [[AI 开发/Agent 工程/Codex/多个项目如何复用 Codex 规则|多个项目如何复用 Codex 规则]]
+- [[AI 开发/Agent 工程/Codex/Codex Skill、Plugin、MCP 与 Superpowers|Codex Skill、Plugin、MCP 与 Superpowers]]

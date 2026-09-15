@@ -123,6 +123,7 @@ article.garden-home h2#探索主题 + ul {
 }
 
 article.garden-home h2#探索主题 + ul > li {
+  position: relative;
   min-height: 7.2rem;
   margin: 0;
   padding: 1.25rem 1.35rem;
@@ -139,13 +140,15 @@ article.garden-home h2#探索主题 + ul > li {
     box-shadow 0.2s ease;
 }
 
-article.garden-home h2#探索主题 + ul > li:hover {
+article.garden-home h2#探索主题 + ul > li:hover,
+article.garden-home h2#探索主题 + ul > li:focus-within {
   transform: translateY(-3px);
   border-color: var(--secondary);
   box-shadow: 0 14px 30px rgba(36, 33, 29, 0.08);
 }
 
 article.garden-home h2#探索主题 + ul > li > a.internal {
+  position: static;
   display: block;
   width: fit-content;
   margin-bottom: 0.45rem;
@@ -156,6 +159,18 @@ article.garden-home h2#探索主题 + ul > li > a.internal {
   font-size: 1.12rem;
   font-weight: 700;
   line-height: 1.45;
+}
+
+article.garden-home h2#探索主题 + ul > li > a.internal::after {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  content: "";
+}
+
+article.garden-home h2#探索主题 + ul > li > a.internal:focus-visible::after {
+  outline: 2px solid var(--secondary);
+  outline-offset: 3px;
 }
 
 article.garden-home h2#最近整理 + ul {
@@ -627,6 +642,271 @@ footer {
 .page-header .tags a.internal.tag-link:focus-visible {
   outline: 2px solid var(--tag-accent);
   outline-offset: 2px;
+}
+
+// Directory pages share the garden typography but use a compact navigation layout.
+.page:has(.center > .popover-hint > article.knowledge-map) {
+  & .center > .popover-hint {
+    max-width: 920px;
+    margin-inline: auto;
+  }
+
+  & .page-header .content-meta,
+  & .page-header .tags,
+  & .sidebar .toc,
+  & .sidebar .graph,
+  & .page-listing,
+  & .center > hr,
+  & .page-footer {
+    display: none;
+  }
+
+  & .article-title {
+    margin-bottom: 0.75rem;
+  }
+}
+
+article.knowledge-map {
+  & .markdown-preview-view {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+
+  & .markdown-preview-view > p {
+    grid-column: 1 / -1;
+    margin: 0 0 1.8rem;
+    color: var(--darkgray);
+    font-size: 0.98rem;
+    line-height: 1.8;
+  }
+
+  & h2,
+  & h3 {
+    grid-column: 1;
+    margin: 0;
+    border: 0;
+    letter-spacing: 0;
+    line-height: 1.65;
+  }
+
+  & h2 {
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--lightgray);
+    font-size: 1.08rem;
+  }
+
+  & h3 {
+    padding: 0.65rem 0 0.65rem 1rem;
+    color: var(--darkgray);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  & ul {
+    grid-column: 2;
+    min-width: 0;
+    margin: 0;
+    padding: 0.45rem 0;
+    list-style: none;
+  }
+
+  & h2 + ul {
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--lightgray);
+  }
+
+  & h3 + ul {
+    padding-top: 0;
+  }
+
+  & li {
+    margin: 0;
+  }
+
+  & li > a.internal {
+    display: block;
+    padding: 0.65rem 0.85rem;
+    border: 0;
+    border-radius: 8px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    transition: background-color 0.15s ease;
+  }
+
+  & li > a.internal:hover {
+    background: var(--highlight);
+  }
+
+  & li > a.internal:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 2px;
+  }
+}
+
+article.knowledge-map .concept-overview {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-bottom: 1.75rem;
+
+  & .concept-band {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  & .concept-band strong {
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+
+  & .concept-band > span {
+    color: var(--darkgray);
+    font-size: 0.8rem;
+  }
+
+  & .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  & .concept-grid + .concept-band {
+    margin-top: 1.5rem;
+  }
+
+  & .concept-card {
+    --concept-accent: #4f735f;
+
+    min-width: 0;
+    padding: 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--concept-accent) 22%, var(--lightgray));
+    border-top: 3px solid var(--concept-accent);
+    border-radius: 12px;
+    background: linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--concept-accent) 9%, var(--light)),
+      var(--light)
+    );
+    box-shadow: 0 4px 14px rgba(36, 33, 29, 0.025);
+  }
+
+  & .concept-knowledge {
+    --concept-accent: #4b7986;
+  }
+
+  & .concept-action {
+    --concept-accent: #9a7040;
+  }
+
+  & .concept-memory {
+    --concept-accent: #7a698d;
+  }
+
+  & .concept-quality {
+    --concept-accent: #517e77;
+  }
+
+  & .concept-engineering {
+    --concept-accent: #9c6557;
+  }
+
+  & .concept-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  & .concept-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 1.9rem;
+    height: 1.9rem;
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--concept-accent) 14%, var(--light));
+    color: var(--concept-accent);
+    font-family: var(--codeFont);
+    font-size: 0.76rem;
+    font-weight: 600;
+  }
+
+  & .concept-card h3 {
+    padding: 0;
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  & .concept-card p {
+    margin: 0.7rem 0 1rem;
+    color: var(--darkgray);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  & ul.concept-terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  & .concept-terms li {
+    margin: 0;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid color-mix(in srgb, var(--concept-accent) 16%, var(--lightgray));
+    border-radius: 5px;
+    background: color-mix(in srgb, var(--light) 82%, transparent);
+    color: var(--darkgray);
+    font-size: 0.76rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+  }
+}
+
+:root[saved-theme="dark"] article.knowledge-map .concept-overview .concept-number {
+  color: var(--dark);
+}
+
+@media all and (max-width: 1100px) {
+  article.knowledge-map .concept-overview .concept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media all and (max-width: 600px) {
+  article.knowledge-map {
+    & .markdown-preview-view {
+      display: block;
+    }
+
+    & h2 {
+      padding: 1rem 0 0.35rem;
+    }
+
+    & h3 {
+      padding: 0.65rem 0 0.15rem;
+    }
+
+    & ul,
+    & h2 + ul {
+      padding: 0 0 0.75rem;
+      border-top: 0;
+    }
+
+    & li > a.internal {
+      padding-inline: 0.5rem;
+    }
+  }
 }
 
 @media all and ($mobile) {
